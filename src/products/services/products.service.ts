@@ -1,10 +1,6 @@
-<<<<<<< HEAD
-import { Injectable, NotFoundException, Inject } from '@nestjs/common';
-=======
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model, FilterQuery } from 'mongoose';
->>>>>>> bd781bd849c066f1fa8aa5f0d06df8f06a947c4a
 
 import { Product } from './../entities/product.entity';
 import {
@@ -12,12 +8,7 @@ import {
   UpdateProductDto,
   FilterProductsDto,
 } from './../dtos/products.dtos';
-<<<<<<< HEAD
 import { Db } from 'mongodb';
-import { InjectModel } from '@nestjs/mongoose';
-import { Model, FilterQuery } from 'mongoose';
-=======
->>>>>>> bd781bd849c066f1fa8aa5f0d06df8f06a947c4a
 
 @Injectable()
 export class ProductsService {
@@ -35,11 +26,12 @@ export class ProductsService {
       }
       return this.productModel
         .find(filters)
+        .populate('brand')
         .skip(offset * limit)
         .limit(limit)
         .exec();
     }
-    return this.productModel.find().exec();
+    return this.productModel.find().populate('brand').exec();
   }
 
   async findOne(id: string) {
