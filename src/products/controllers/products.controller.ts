@@ -59,8 +59,8 @@ export class ProductsController {
     return this.productsService.update(id, payload);
   }
 
-  @Delete(':id', MongoIdPipe)
-  delete(@Param('id') id: string) {
+  @Delete(':id')
+  delete(@Param('id', MongoIdPipe) id: string) {
     return this.productsService.remove(id);
   }
 }
