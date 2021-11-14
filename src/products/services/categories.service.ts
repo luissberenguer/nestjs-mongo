@@ -1,31 +1,29 @@
-import { Injectable, NotFoundException } from '@nestjs/common';
-
+import { Injectable, NotFoundException, Inject } from '@nestjs/common';
+import { InjectModel } from '@nestjs/mongoose';
 import { Category } from '../entities/category.entity';
 import { CreateCategoryDto, UpdateCategoryDto } from '../dtos/category.dtos';
+import { Model } from 'mongoose';
 
 @Injectable()
 export class CategoriesService {
-  private counterId = 1;
-  private categories: Category[] = [
-    {
-      id: 1,
-      name: 'Category 1',
-    },
-  ];
+  constructor(
+    @InjectModel(Category.name) private categoryModel: Model<Category>,
+  ) {}
 
   findAll() {
-    return this.categories;
+    return this.categoryModel.find().exec();
   }
 
-  findOne(id: number) {
+  findOne(id: string) {
     const category = this.categories.find((item) => item.id === id);
     if (!category) {
       throw new NotFoundException(`Category #${id} not found`);
     }
     return category;
   }
+}
 
-  create(data: CreateCategoryDto) {
+/*   create(data: CreateCategoryDto) {
     this.counterId = this.counterId + 1;
     const newCategory = {
       id: this.counterId,
@@ -33,9 +31,9 @@ export class CategoriesService {
     };
     this.categories.push(newCategory);
     return newCategory;
-  }
+  } */
 
-  update(id: number, changes: UpdateCategoryDto) {
+/*   update(id: number, changes: UpdateCategoryDto) {
     const category = this.findOne(id);
     const index = this.categories.findIndex((item) => item.id === id);
     this.categories[index] = {
@@ -52,5 +50,4 @@ export class CategoriesService {
     }
     this.categories.splice(index, 1);
     return true;
-  }
-}
+  } */

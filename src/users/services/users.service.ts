@@ -43,15 +43,6 @@ export class UsersService {
     return newModel.save();
   }
 
-<<<<<<< HEAD
-  async getOrderByUser(id: number) {
-    const user = this.findOne(id);
-    return {
-      date: new Date(),
-      user,
-      products: await this.productsService.findAll(),
-    };
-=======
   update(id: string, changes: UpdateUserDto) {
     return this.userModel
       .findByIdAndUpdate(id, { $set: changes }, { new: true })
@@ -60,6 +51,5 @@ export class UsersService {
 
   remove(id: string) {
     return this.userModel.findByIdAndDelete(id);
->>>>>>> bd781bd849c066f1fa8aa5f0d06df8f06a947c4a
   }
 }
