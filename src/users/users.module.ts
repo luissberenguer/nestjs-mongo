@@ -1,12 +1,12 @@
 import { Module } from '@nestjs/common';
+import { MongooseModule } from '@nestjs/mongoose';
 
 import { CustomerController } from './controllers/customers.controller';
 import { CustomersService } from './services/customers.service';
 import { UsersController } from './controllers/users.controller';
 import { UsersService } from './services/users.service';
-import { MongooseModule } from '@nestjs/mongoose';
 
-import { ProductsModule } from '../products/products.module';
+import { ProductsModule } from './../products/products.module';
 
 import { CustomerSchema, Customer } from './entities/customer.entity';
 import { OrderSchema, Order } from './entities/order.entity';

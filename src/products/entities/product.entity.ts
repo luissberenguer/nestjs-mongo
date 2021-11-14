@@ -1,6 +1,5 @@
 import { Prop, Schema, SchemaFactory, raw } from '@nestjs/mongoose';
 import { Document } from 'mongoose';
-import { number } from 'joi';
 
 @Schema()
 export class Product extends Document {
@@ -10,10 +9,10 @@ export class Product extends Document {
   @Prop()
   description: string;
 
-  @Prop({ type: number, index: true })
+  @Prop({ type: Number, index: true })
   price: number;
 
-  @Prop({ type: number })
+  @Prop({ type: Number })
   stock: number;
 
   @Prop()

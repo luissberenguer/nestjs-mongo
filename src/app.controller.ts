@@ -20,9 +20,8 @@ export class AppController {
     return 'con /sas/';
   }
 
-  @Get('tasks')
-  async getTasks(){
-    const tasks = await this.appService.getTasks();
-    return tasks;
+  @Get('/tasks/')
+  getTasks() {
+    return this.appService.getTasks();
   }
 }

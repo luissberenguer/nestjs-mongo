@@ -6,7 +6,6 @@ export class CreateCategoryDto {
   @IsNotEmpty()
   readonly name: string;
 
-
   @IsUrl()
   @IsNotEmpty()
   readonly image: string;
