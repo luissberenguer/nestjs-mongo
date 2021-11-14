@@ -1,6 +1,7 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
-import { number } from 'joi';
 import { Document } from 'mongoose';
+import { number } from 'joi';
+
 
 @Schema()
 export class Product extends Document {

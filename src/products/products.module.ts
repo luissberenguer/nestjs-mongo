@@ -8,6 +8,8 @@ import { BrandsService } from './services/brands.service';
 import { CategoriesService } from './services/categories.service';
 import { MongooseModule } from '@nestjs/mongoose';
 import { ProductSchema, Product } from './entities/product.entity';
+import { BrandSchema, Brand } from './entities/brand.entity';
+import { CategorySchema, Category } from './entities/category.entity';
 
 @Module({
   imports: [
@@ -15,6 +17,14 @@ import { ProductSchema, Product } from './entities/product.entity';
       {
         name: Product.name,
         schema: ProductSchema,
+      },
+      {
+        name: Brand.name,
+        schema: BrandSchema,
+      },
+      {
+        name: Category.name,
+        schema: CategorySchema,
       },
     ]),
   ],
