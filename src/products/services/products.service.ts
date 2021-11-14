@@ -1,10 +1,12 @@
-import { Injectable, NotFoundException } from '@nestjs/common';
+import { Injectable, NotFoundException, Inject } from '@nestjs/common';
 
 import { Product } from './../entities/product.entity';
 import { CreateProductDto, UpdateProductDto } from './../dtos/products.dtos';
+import { Db } from 'mongodb';
 
 @Injectable()
 export class ProductsService {
+  constructor(@Inject('MODULE') private database: Db) {}
   private counterId = 1;
   private products: Product[] = [
     {
@@ -17,8 +19,13 @@ export class ProductsService {
     },
   ];
 
-  findAll() {
-    return this.products;
+  /* async findAll() {
+    const allProd = await this.database.collection('products').find();
+    return allProd;
+  } */
+
+  async findAll() {
+    return this.products
   }
 
   findOne(id: number) {

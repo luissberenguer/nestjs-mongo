@@ -19,4 +19,10 @@ export class AppController {
   hello() {
     return 'con /sas/';
   }
+
+  @Get('tasks')
+  async getTasks(){
+    const tasks = await this.appService.getTasks();
+    return tasks;
+  }
 }
